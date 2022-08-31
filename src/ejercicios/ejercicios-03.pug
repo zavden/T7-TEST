@@ -1,0 +1,46 @@
+extends /modules/pug/blocks/ejercicios
+block pug_javascript
+    -
+        let titulo = "Ejemplo 3",
+            formato = ""
+        let codepen_list = [
+            "vYEPxPX",
+            "BaybRKr",
+        ]
+        nej = 3 // <== EXERCISE NUMBER - REPLACE IT
+block pug_styles
+    +new_style(`../styles.css`)
+block html_javascript
+    +new_script(`../scripts.js`)
+block pug_contenido
+    +codepen(1)
+    +codepen_url("jONXGLy",2,height_window=600)
+    +html_emb_ej("ej-01")
+    .tab-content
+        +tab_info("London", "Paris", "Tokyo")
+        .tabcontent#London
+            p Este es londres
+            :markdown-it(html)
+                ## Este es un título 3.
+
+                ## Esto es cóigo de bloque:
+                ```python
+                from manimlib.imports import *
+                self.play(Write("Hola mundo"))
+                ```
+
+                Esto es un `codigo` en linea.
+
+                ## Esta es una fórmula
+                $$\Large
+                    \lim_{n\to\infty}\sum_{i=0}^{n}f\left(a+\frac{i(b-a)}{n}\right)\left(\frac{b-a}{n}\right) = \int_a^b f(x)
+                $$
+        .tabcontent#Paris
+            p Este es Paris
+        .tabcontent#Tokyo
+            p Este es Tokyo
+//-
+    p=String.raw`$$ x^5 $$`
+    each url in codepen_list
+        +codepen_url(url,`${codepen_list.indexOf(url)+1}`,height_window=600)
+
